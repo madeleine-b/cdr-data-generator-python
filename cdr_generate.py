@@ -1,7 +1,14 @@
 import random
 from datetime import datetime, MINYEAR, MAXYEAR, timezone
 import uuid
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--n', type=int, default=100, 
+                    help='number of entries to generate')
+
+args = parser.parse_args()
+n = args.n
 
 def get_random_dt():
 	year = random.randint(1900, 2021)
@@ -19,7 +26,7 @@ def get_random_dt():
 		            tzinfo=timezone.utc)
 
 
-for i in range(100):
+for i in range(n):
 	id = uuid.uuid4()
 	calling_num = ''.join([str(n) for n in random.choices(range(10), k=10)])
 	called_num = ''.join([str(n) for n in random.choices(range(10), k=10)])
